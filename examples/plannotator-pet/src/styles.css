@@ -52,7 +52,7 @@ button {
 .panelHeader {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
+  align-items: start;
   gap: 16px;
 }
 
@@ -124,8 +124,8 @@ h2 {
 .installSnippet {
   display: flex;
   align-items: center;
-  width: 100%;
-  max-width: 100%;
+  width: calc(100% + 56px);
+  max-width: calc(100% + 56px);
   margin-top: 8px;
   overflow: hidden;
   border: 1px solid #d7ded9;
