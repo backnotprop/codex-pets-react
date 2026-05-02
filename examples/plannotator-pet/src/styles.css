@@ -145,9 +145,10 @@ h2 {
 .copyInstallButton {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
   align-self: stretch;
-  padding: 0 8px;
+  width: 34px;
+  padding: 0;
   border-left: 1px solid #d7ded9;
   border-radius: 0;
   color: #126a6b;

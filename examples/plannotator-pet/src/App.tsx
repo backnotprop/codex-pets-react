@@ -447,7 +447,6 @@ export function App() {
                 type="button"
               >
                 {copiedInstall ? <Check size={15} /> : <Copy size={15} />}
-                <span>{copiedInstall ? "Copied" : "Copy"}</span>
               </button>
             </div>
           </div>
