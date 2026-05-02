@@ -1,0 +1,372 @@
+:root {
+  color: #1c2321;
+  background: #f4f7f5;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+.appShell {
+  min-height: 100vh;
+  color: #1c2321;
+}
+
+.controlPanel {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 80;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow: auto;
+  padding: 22px;
+  border-right: 1px solid #d7ded9;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  box-shadow: 8px 0 28px rgba(28, 35, 33, 0.08);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: #b53d2e;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: 1.45rem;
+  line-height: 1.1;
+}
+
+h2 {
+  color: #43514c;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.controlGroup {
+  display: grid;
+  gap: 10px;
+}
+
+.actionGrid,
+.toggleGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.actionButton,
+.toggleButton,
+.iconButton,
+.pinButton,
+.nudgePad button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  border-radius: 8px;
+  color: #20302b;
+  background: #edf3ef;
+  transition:
+    background-color 140ms ease,
+    box-shadow 140ms ease,
+    transform 140ms ease;
+}
+
+.actionButton:hover,
+.toggleButton:hover,
+.iconButton:hover,
+.pinButton:hover,
+.nudgePad button:hover {
+  background: #dfeae4;
+}
+
+.actionButton:active,
+.toggleButton:active,
+.iconButton:active,
+.pinButton:active,
+.nudgePad button:active {
+  transform: translateY(1px);
+}
+
+.actionButton {
+  gap: 6px;
+  flex-direction: column;
+  height: 58px;
+  padding: 8px 4px;
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+
+.toggleGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.toggleButton {
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.toggleButton[aria-pressed="true"],
+.pinButton[aria-pressed="true"] {
+  color: #ffffff;
+  background: #126a6b;
+  box-shadow: 0 8px 18px rgba(18, 106, 107, 0.22);
+}
+
+.toggleTrack {
+  position: relative;
+  width: 28px;
+  height: 16px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: rgba(32, 48, 43, 0.22);
+}
+
+.toggleTrack span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: transform 140ms ease;
+}
+
+.toggleButton[aria-pressed="true"] .toggleTrack span {
+  transform: translateX(12px);
+}
+
+.iconButton {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+}
+
+.pinGroup {
+  grid-template-columns: 1fr auto;
+  align-items: start;
+}
+
+.pinGroup h2 {
+  grid-column: 1 / -1;
+}
+
+.pinGrid {
+  display: grid;
+  width: 120px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.pinButton {
+  width: 36px;
+  height: 36px;
+}
+
+.pinButton span {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #7a8b85;
+}
+
+.nudgePad {
+  display: grid;
+  width: 86px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.nudgePad button {
+  width: 26px;
+  height: 26px;
+  min-height: 26px;
+}
+
+.nudgePad button:first-child {
+  grid-column: 2;
+}
+
+.nudgePad button:nth-child(2) {
+  grid-column: 1;
+}
+
+.nudgePad button:nth-child(3) {
+  grid-column: 3;
+}
+
+.nudgePad button:nth-child(4) {
+  grid-column: 2;
+}
+
+.rangeRow {
+  display: grid;
+  grid-template-columns: 1fr 48px;
+  align-items: center;
+  gap: 10px;
+  color: #43514c;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.rangeRow input {
+  accent-color: #126a6b;
+}
+
+.statusGroup pre {
+  min-height: 110px;
+  max-height: 190px;
+  margin: 0;
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid #d7ded9;
+  border-radius: 8px;
+  color: #2c3935;
+  background: #f8faf8;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.logGroup ol {
+  min-height: 76px;
+  margin: 0;
+  padding: 0 0 0 18px;
+  color: #43514c;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.stage {
+  position: fixed;
+  inset: 0 0 0 320px;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(18, 106, 107, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 106, 107, 0.08) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(242, 190, 34, 0.16), transparent 42%),
+    #f4f7f5;
+  background-size:
+    34px 34px,
+    34px 34px,
+    auto,
+    auto;
+}
+
+.stageTopbar {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.stageTopbar span {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid rgba(28, 35, 33, 0.1);
+  border-radius: 8px;
+  color: #1f3b38;
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  body {
+    overflow: hidden;
+  }
+
+  .controlPanel {
+    inset: auto 0 0 0;
+    width: auto;
+    max-height: 206px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(230px, 280px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 14px;
+    border-top: 1px solid #d7ded9;
+    border-right: 0;
+    box-shadow: 0 -8px 28px rgba(28, 35, 33, 0.1);
+  }
+
+  .panelHeader {
+    align-items: start;
+  }
+
+  h1 {
+    font-size: 1.12rem;
+  }
+
+  .stage {
+    inset: 0 0 206px 0;
+  }
+
+  .stageTopbar {
+    top: 14px;
+    right: 14px;
+    left: 14px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actionButton,
+  .toggleButton,
+  .iconButton,
+  .pinButton,
+  .nudgePad button,
+  .toggleTrack span {
+    transition: none;
+  }
+}
