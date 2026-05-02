@@ -417,7 +417,7 @@ export function App() {
         <div className="panelHeader">
           <div>
             <p className="eyebrow">{taterPet.displayName}</p>
-            <h1>Plannotator Pet</h1>
+            <h1>Codex Pets React</h1>
             <a
               className="sponsorBadge"
               href="https://github.com/backnotprop/plannotator"
