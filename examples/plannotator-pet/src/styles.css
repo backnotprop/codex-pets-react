@@ -50,10 +50,14 @@ button {
 }
 
 .panelHeader {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
+}
+
+.panelHeader > div {
+  min-width: 0;
 }
 
 .eyebrow {
@@ -86,6 +90,7 @@ h2 {
 .sponsorBadge {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 6px;
   min-height: 28px;
   margin-top: 10px;
@@ -119,7 +124,7 @@ h2 {
 .installSnippet {
   display: flex;
   align-items: center;
-  width: min(100%, 258px);
+  width: 100%;
   max-width: 100%;
   margin-top: 8px;
   overflow: hidden;
