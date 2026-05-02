@@ -427,6 +427,7 @@ export function App() {
               <span>Brought to you by</span>
               <strong>Plannotator</strong>
             </a>
+            <code className="installSnippet">npm install codex-pets-react</code>
           </div>
           <button
             className="iconButton"

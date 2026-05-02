@@ -116,6 +116,25 @@ h2 {
   background: #dceee8;
 }
 
+.installSnippet {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 8px;
+  padding: 7px 9px;
+  overflow: auto;
+  border: 1px solid #d7ded9;
+  border-radius: 8px;
+  color: #243530;
+  background: #f8faf8;
+  font-family:
+    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: 750;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
 .controlGroup {
   display: grid;
   gap: 10px;
