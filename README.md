@@ -9,6 +9,18 @@ The package includes:
 - `petReducer` and `usePetController` for state-driven app integration.
 - A Tater atlas preset that matches the packaged Codex pet asset.
 
+## Install
+
+```bash
+npm install codex-pets-react
+```
+
+React and React DOM are peer dependencies:
+
+```bash
+npm install react react-dom
+```
+
 ## Example App
 
 The plannotator pet playground lives in `examples/plannotator-pet`.

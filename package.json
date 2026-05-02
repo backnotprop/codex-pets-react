@@ -17,6 +17,9 @@
     "dist",
     "README.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vite --config examples/plannotator-pet/vite.config.ts --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
@@ -24,7 +27,8 @@
     "build:lib": "vite build --config vite.lib.config.ts",
     "build:example": "vite build --config examples/plannotator-pet/vite.config.ts",
     "build": "npm run typecheck && npm run build:types && npm run build:lib && npm run build:example",
-    "preview": "vite preview --config examples/plannotator-pet/vite.config.ts --host 127.0.0.1"
+    "preview": "vite preview --config examples/plannotator-pet/vite.config.ts --host 127.0.0.1",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "codex",
