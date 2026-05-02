@@ -2,6 +2,7 @@
   "name": "codex-pets-react",
   "version": "0.1.0",
   "description": "Declarative React wrapper for Codex pet spritesheets.",
+  "license": "MIT",
   "type": "module",
   "main": "./dist/lib/index.cjs",
   "module": "./dist/lib/index.js",
