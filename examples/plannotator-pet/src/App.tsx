@@ -413,7 +413,16 @@ export function App() {
         <div className="panelHeader">
           <div>
             <p className="eyebrow">{taterPet.displayName}</p>
-            <h1>Plannotator Pet</h1>
+            <h1>
+              <a
+                className="titleLink"
+                href="https://github.com/backnotprop/plannotator"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Plannotator Pet
+              </a>
+            </h1>
           </div>
           <button
             className="iconButton"

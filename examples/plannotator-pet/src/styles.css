@@ -76,6 +76,18 @@ h1 {
   line-height: 1.1;
 }
 
+.titleLink {
+  color: inherit;
+  text-decoration-color: rgba(18, 106, 107, 0.45);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.titleLink:hover {
+  color: #126a6b;
+  text-decoration-color: currentColor;
+}
+
 h2 {
   color: #43514c;
   font-size: 0.78rem;
