@@ -3,6 +3,15 @@
   "version": "0.1.0",
   "description": "Declarative React wrapper for Codex pet spritesheets.",
   "license": "MIT",
+  "author": "backnotprop",
+  "homepage": "https://backnotprop.github.io/codex-pets-react/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/backnotprop/codex-pets-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/backnotprop/codex-pets-react/issues"
+  },
   "type": "module",
   "main": "./dist/lib/index.cjs",
   "module": "./dist/lib/index.js",
