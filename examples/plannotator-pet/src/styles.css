@@ -76,23 +76,44 @@ h1 {
   line-height: 1.1;
 }
 
-.titleLink {
-  color: inherit;
-  text-decoration-color: rgba(18, 106, 107, 0.45);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
-}
-
-.titleLink:hover {
-  color: #126a6b;
-  text-decoration-color: currentColor;
-}
-
 h2 {
   color: #43514c;
   font-size: 0.78rem;
   font-weight: 800;
   text-transform: uppercase;
+}
+
+.sponsorBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  margin-top: 10px;
+  padding: 5px 8px;
+  border: 1px solid rgba(18, 106, 107, 0.22);
+  border-radius: 8px;
+  color: #126a6b;
+  background: #e8f3ef;
+  font-size: 0.72rem;
+  font-weight: 750;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.sponsorBadge span {
+  color: #5b6a65;
+}
+
+.sponsorBadge strong {
+  color: #0f595a;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.sponsorBadge:hover {
+  border-color: rgba(18, 106, 107, 0.42);
+  background: #dceee8;
 }
 
 .controlGroup {
