@@ -2,7 +2,7 @@
 
 Declarative React components and state helpers for Codex pet spritesheets.
 
-Brought to you by [Plannotator](https://github.com/backnotprop/plannotator), the review service for agent work: use it before an agent starts to sharpen plans, and after an agent finishes to review code.
+Brought to you by [Plannotator](https://github.com/backnotprop/plannotator), the review surface for agent work: use it before an agent starts to sharpen plans, and after an agent finishes to review code.
 
 The package includes:
 
