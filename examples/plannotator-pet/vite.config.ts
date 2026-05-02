@@ -7,6 +7,7 @@ const workspaceRoot = fileURLToPath(new URL("../..", import.meta.url));
 
 export default defineConfig({
   root: exampleRoot,
+  base: "/codex-pets-react/",
   plugins: [react()],
   server: {
     fs: {
