@@ -25,16 +25,18 @@ import {
   PetWidget,
   getPinnedPetPosition,
   normalizeBoundsPadding,
-  taterAtlas,
-  taterPet,
+  codexPetAtlas,
   usePetController,
   usePetDragGestureAnimations,
   type PetAction,
   type PetDragGestureAnimationMap,
   type PetPin,
-  type TaterAnimationName
+  type CodexPetAnimationName
 } from "../../../src/lib";
 
+const taterPet = {
+  displayName: "Tater"
+} as const;
 const taterExampleSpritesheetUrl = `${import.meta.env.BASE_URL}pets/tater/spritesheet.webp`;
 
 type LoggedAction = {
@@ -45,7 +47,7 @@ type LoggedAction = {
 type ActionButton = {
   label: string;
   icon: LucideIcon;
-  action: PetAction<TaterAnimationName>;
+  action: PetAction<CodexPetAnimationName>;
 };
 
 const actionButtons: ActionButton[] = [
@@ -123,7 +125,7 @@ const pins: PetPin[] = [
   "bottom-right"
 ];
 
-function formatAction(action: PetAction<TaterAnimationName>) {
+function formatAction(action: PetAction<CodexPetAnimationName>) {
   switch (action.type) {
     case "animation.set":
       return `set ${action.animation}`;
@@ -228,7 +230,7 @@ export function App() {
   const compact = useMediaQuery("(max-width: 760px)");
   const viewport = useViewportSize();
 
-  const { pet, petDispatch } = usePetController<TaterAnimationName>({
+  const { pet, petDispatch } = usePetController<CodexPetAnimationName>({
     initialState: {
       animation: { name: "idle", mode: "loop" },
       pin: "bottom-right",
@@ -248,8 +250,8 @@ export function App() {
   );
   const petSize = useMemo(
     () => ({
-      width: taterAtlas.cellWidth * scale,
-      height: taterAtlas.cellHeight * scale
+      width: codexPetAtlas.cellWidth * scale,
+      height: codexPetAtlas.cellHeight * scale
     }),
     [scale]
   );
@@ -267,7 +269,7 @@ export function App() {
   }, [boundsPadding, pet.pin, pet.position, petSize, viewport]);
 
   const commitAction = useCallback(
-    (action: PetAction<TaterAnimationName>) => {
+    (action: PetAction<CodexPetAnimationName>) => {
       petDispatch(action);
 
       if (action.type === "drag.move") {
@@ -289,11 +291,11 @@ export function App() {
         right: "running-right",
         up: "jumping",
         down: "waving"
-      }) satisfies PetDragGestureAnimationMap<TaterAnimationName>,
+      }) satisfies PetDragGestureAnimationMap<CodexPetAnimationName>,
     []
   );
 
-  const observeDragGesture = usePetDragGestureAnimations<TaterAnimationName>({
+  const observeDragGesture = usePetDragGestureAnimations<CodexPetAnimationName>({
     enabled: gestureEnabled && dragEnabled && !pauseFrames,
     animations: dragGestureAnimations,
     restAnimation: "idle",
@@ -304,7 +306,7 @@ export function App() {
   });
 
   const dispatchAction = useCallback(
-    (action: PetAction<TaterAnimationName>) => {
+    (action: PetAction<CodexPetAnimationName>) => {
       commitAction(action);
       observeDragGesture(action);
     },
@@ -351,7 +353,7 @@ export function App() {
         }
       ] satisfies Array<{
         label: string;
-        action: PetAction<TaterAnimationName>;
+        action: PetAction<CodexPetAnimationName>;
       }>,
     []
   );
@@ -592,7 +594,7 @@ export function App() {
 
       <PetWidget
         animation={pet.animation}
-        atlas={taterAtlas}
+        atlas={codexPetAtlas}
         boundsPadding={boundsPadding}
         draggable={dragEnabled}
         paused={pauseFrames}

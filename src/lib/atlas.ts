@@ -1,6 +1,17 @@
 import type { PetSpriteAtlas } from "./types";
 
-export const taterAtlas = {
+export type CodexPetAnimationName =
+  | "idle"
+  | "running-right"
+  | "running-left"
+  | "waving"
+  | "jumping"
+  | "failed"
+  | "waiting"
+  | "running"
+  | "review";
+
+export const codexPetAtlas = {
   columns: 8,
   rows: 9,
   cellWidth: 192,
@@ -52,16 +63,4 @@ export const taterAtlas = {
       frameDurations: [150, 150, 150, 150, 150, 280]
     }
   }
-} as const satisfies PetSpriteAtlas<string>;
-
-export type TaterAnimationName = keyof typeof taterAtlas.animations;
-
-export const taterPet = {
-  id: "tater",
-  displayName: "Tater",
-  description:
-    "A cheerful potato mascot with oversized translucent visor goggles, a glowing red stylus in one hand, soft pale limbs, and chunky futuristic sneakers, simplified into the Codex digital pet style.",
-  spritesheetPath: "spritesheet.webp"
-} as const;
-
-export const taterSpritesheetUrl = "/pets/tater/spritesheet.webp";
+} as const satisfies PetSpriteAtlas<CodexPetAnimationName>;

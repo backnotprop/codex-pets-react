@@ -1,9 +1,7 @@
 export { normalizePetAnimation } from "./animation";
 export {
-  taterAtlas,
-  taterPet,
-  taterSpritesheetUrl,
-  type TaterAnimationName
+  codexPetAtlas,
+  type CodexPetAnimationName
 } from "./atlas";
 export { PetWidget } from "./PetWidget";
 export {

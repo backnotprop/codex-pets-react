@@ -9,7 +9,7 @@ The package includes:
 - `SpriteAnimator` for atlas row/frame playback.
 - `PetWidget` for fixed-position rendering, dragging, pinning, and animation completion events.
 - `petReducer` and `usePetController` for state-driven app integration.
-- A Tater atlas preset that matches the packaged Codex pet asset.
+- A shared `codexPetAtlas` and `CodexPetAnimationName` contract for Codex pet spritesheets.
 
 ## Install
 
@@ -54,12 +54,12 @@ cp ~/.codex/pets/tater/pet.json public/pets/tater/pet.json
 cp ~/.codex/pets/tater/spritesheet.webp public/pets/tater/spritesheet.webp
 ```
 
-Then render it with the matching atlas:
+Codex pets share the same atlas contract, so render the copied spritesheet with `codexPetAtlas`:
 
 ```tsx
 <PetWidget
   src="/pets/tater/spritesheet.webp"
-  atlas={taterAtlas}
+  atlas={codexPetAtlas}
   animation={pet.animation}
   position={pet.position}
   pin={pet.pin}
@@ -68,20 +68,20 @@ Then render it with the matching atlas:
 />
 ```
 
-The `pet.json` file identifies the pet and its spritesheet path. The React wrapper needs the browser-accessible `src` plus an atlas definition that describes the grid, frame rows, and frame durations.
+The `pet.json` file identifies the pet and its spritesheet path. The React wrapper needs the browser-accessible `src` plus `codexPetAtlas`, which describes the shared grid, frame rows, and frame durations.
 
 ## Usage
 
 ```tsx
 import {
   PetWidget,
-  taterAtlas,
+  codexPetAtlas,
   usePetController,
-  type TaterAnimationName
+  type CodexPetAnimationName
 } from "codex-pets-react";
 
 export function PetLayer() {
-  const { pet, petDispatch } = usePetController<TaterAnimationName>({
+  const { pet, petDispatch } = usePetController<CodexPetAnimationName>({
     initialState: {
       animation: { name: "idle", mode: "loop" },
       pin: "bottom-right"
@@ -94,7 +94,7 @@ export function PetLayer() {
   return (
     <PetWidget
       src="/pets/tater/spritesheet.webp"
-      atlas={taterAtlas}
+      atlas={codexPetAtlas}
       animation={pet.animation}
       position={pet.position}
       pin={pet.pin}
@@ -125,7 +125,7 @@ petDispatch({ type: "animation.set", animation: "waiting" });
 Keep gesture animation opt-in by observing pet actions and dispatching follow-up animation actions:
 
 ```tsx
-const observeDragGesture = usePetDragGestureAnimations<TaterAnimationName>({
+const observeDragGesture = usePetDragGestureAnimations<CodexPetAnimationName>({
   enabled: true,
   animations: {
     left: "running-left",
@@ -139,7 +139,7 @@ const observeDragGesture = usePetDragGestureAnimations<TaterAnimationName>({
   onGestureAction: petDispatch
 });
 
-const onAction = (action: PetAction<TaterAnimationName>) => {
+const onAction = (action: PetAction<CodexPetAnimationName>) => {
   petDispatch(action);
   observeDragGesture(action);
 };
