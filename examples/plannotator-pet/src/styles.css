@@ -117,22 +117,47 @@ h2 {
 }
 
 .installSnippet {
-  display: block;
-  width: fit-content;
+  display: flex;
+  align-items: center;
+  width: min(100%, 258px);
   max-width: 100%;
   margin-top: 8px;
-  padding: 7px 9px;
-  overflow: auto;
+  overflow: hidden;
   border: 1px solid #d7ded9;
   border-radius: 8px;
   color: #243530;
   background: #f8faf8;
+}
+
+.installSnippet code {
+  min-width: 0;
+  flex: 1;
+  padding: 8px 9px;
+  overflow: auto;
   font-family:
     "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   font-size: 0.72rem;
   font-weight: 750;
   line-height: 1.2;
   white-space: nowrap;
+}
+
+.copyInstallButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  align-self: stretch;
+  padding: 0 8px;
+  border-left: 1px solid #d7ded9;
+  border-radius: 0;
+  color: #126a6b;
+  background: #e8f3ef;
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.copyInstallButton:hover {
+  background: #dceee8;
 }
 
 .controlGroup {

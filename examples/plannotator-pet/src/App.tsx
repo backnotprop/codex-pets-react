@@ -9,6 +9,8 @@ import {
   ArrowUp,
   CircleDot,
   Clock3,
+  Check,
+  Copy,
   Footprints,
   Hand,
   MapPin,
@@ -212,6 +214,7 @@ function ToggleButton({
 }
 
 export function App() {
+  const installCommand = "npm install codex-pets-react";
   const [autoWaiting, setAutoWaiting] = useState(true);
   const [dragEnabled, setDragEnabled] = useState(true);
   const [gestureEnabled, setGestureEnabled] = useState(true);
@@ -219,6 +222,7 @@ export function App() {
   const [simulationOn, setSimulationOn] = useState(false);
   const [scale, setScale] = useState(0.72);
   const [eventLog, setEventLog] = useState<LoggedAction[]>([]);
+  const [copiedInstall, setCopiedInstall] = useState(false);
   const [simulationLabel, setSimulationLabel] = useState("off");
   const compact = useMediaQuery("(max-width: 760px)");
   const viewport = useViewportSize();
@@ -399,6 +403,12 @@ export function App() {
     }
   };
 
+  const copyInstallCommand = async () => {
+    await navigator.clipboard.writeText(installCommand);
+    setCopiedInstall(true);
+    window.setTimeout(() => setCopiedInstall(false), 1600);
+  };
+
   const statePreview = {
     animation: pet.animation,
     pin: pet.pin,
@@ -427,7 +437,19 @@ export function App() {
               <span>Brought to you by</span>
               <strong>Plannotator</strong>
             </a>
-            <code className="installSnippet">npm install codex-pets-react</code>
+            <div className="installSnippet" role="group" aria-label="Install command">
+              <code>{installCommand}</code>
+              <button
+                aria-label="Copy install command"
+                className="copyInstallButton"
+                onClick={copyInstallCommand}
+                title="Copy install command"
+                type="button"
+              >
+                {copiedInstall ? <Check size={15} /> : <Copy size={15} />}
+                <span>{copiedInstall ? "Copied" : "Copy"}</span>
+              </button>
+            </div>
           </div>
           <button
             className="iconButton"
