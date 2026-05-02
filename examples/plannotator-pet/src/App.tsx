@@ -27,7 +27,6 @@ import {
   normalizeBoundsPadding,
   taterAtlas,
   taterPet,
-  taterSpritesheetUrl,
   usePetController,
   usePetDragGestureAnimations,
   type PetAction,
@@ -35,6 +34,8 @@ import {
   type PetPin,
   type TaterAnimationName
 } from "../../../src/lib";
+
+const taterExampleSpritesheetUrl = `${import.meta.env.BASE_URL}pets/tater/spritesheet.webp`;
 
 type LoggedAction = {
   id: number;
@@ -598,7 +599,7 @@ export function App() {
         pin={pet.pin}
         position={pet.position}
         scale={scale}
-        src={taterSpritesheetUrl}
+        src={taterExampleSpritesheetUrl}
         onAction={dispatchAction}
       />
     </main>
