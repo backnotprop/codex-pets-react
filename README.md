@@ -17,12 +17,6 @@ The package includes:
 npm install codex-pets-react
 ```
 
-React and React DOM are peer dependencies:
-
-```bash
-npm install react react-dom
-```
-
 ## Example App
 
 The plannotator pet playground lives in `examples/plannotator-pet`.
