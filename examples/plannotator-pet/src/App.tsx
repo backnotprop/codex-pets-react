@@ -184,18 +184,22 @@ function ToggleButton({
   active,
   icon: Icon,
   label,
+  title,
   onClick
 }: {
   active: boolean;
   icon: LucideIcon;
   label: string;
+  title: string;
   onClick: () => void;
 }) {
   return (
     <button
+      aria-label={title}
       aria-pressed={active}
       className="toggleButton"
       onClick={onClick}
+      title={title}
       type="button"
     >
       <Icon size={18} />
@@ -458,30 +462,35 @@ export function App() {
               active={simulationOn}
               icon={simulationOn ? Pause : Play}
               label="Sim"
+              title="Run a looping simulation of pet actions"
               onClick={() => setSimulationOn((value) => !value)}
             />
             <ToggleButton
               active={dragEnabled}
               icon={Activity}
               label="Drag"
+              title="Allow dragging the pet around the screen"
               onClick={() => setDragEnabled((value) => !value)}
             />
             <ToggleButton
               active={gestureEnabled}
               icon={MousePointer2}
               label="Gest"
+              title="Change animations based on drag direction"
               onClick={() => setGestureEnabled((value) => !value)}
             />
             <ToggleButton
               active={autoWaiting}
               icon={Clock3}
               label="Wait"
+              title="Switch to waiting after the pet is idle"
               onClick={toggleAutoWaiting}
             />
             <ToggleButton
               active={pauseFrames}
               icon={Pause}
               label="Pause"
+              title="Pause sprite frame playback"
               onClick={() => setPauseFrames((value) => !value)}
             />
           </div>
