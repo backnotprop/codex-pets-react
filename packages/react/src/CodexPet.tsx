@@ -17,7 +17,7 @@ import {
   type CSSProperties,
   type HTMLAttributes
 } from "react";
-import { useLatest } from "./useLatest";
+import { useLatest } from "./useLatest.js";
 
 type NativeDivProps = Omit<
   HTMLAttributes<HTMLDivElement>,

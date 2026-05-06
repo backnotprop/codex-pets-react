@@ -1,14 +1,14 @@
-import { CODEX_PET_STATES } from "./constants";
-import { getPetFrameStyle, normalizePetScale } from "./frame";
-import { preloadPet } from "./preload";
-import { codexPetScheduler, type ScheduledAnimator } from "./scheduler";
+import { CODEX_PET_STATES } from "./constants.js";
+import { getPetFrameStyle, normalizePetScale } from "./frame.js";
+import { preloadPet } from "./preload.js";
+import { codexPetScheduler, type ScheduledAnimator } from "./scheduler.js";
 import type {
   CodexPetAnimationEvent,
   CodexPetAnimator,
   CodexPetAnimatorOptions,
   CodexPetPlayOptions,
   CodexPetState
-} from "./types";
+} from "./types.js";
 
 interface ActiveAction {
   state: CodexPetState;

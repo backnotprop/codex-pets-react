@@ -1,5 +1,5 @@
-import { createCodexPetAnimator } from "./animator";
-import type { CodexPetElement, CreateCodexPetElementOptions } from "./types";
+import { createCodexPetAnimator } from "./animator.js";
+import type { CodexPetElement, CreateCodexPetElementOptions } from "./types.js";
 
 export function createCodexPetElement(
   options: CreateCodexPetElementOptions

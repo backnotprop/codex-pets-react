@@ -1,4 +1,4 @@
-import type { CodexPetAtlas, CodexPetStateConfig } from "./types";
+import type { CodexPetAtlas, CodexPetStateConfig } from "./types.js";
 
 export const CODEX_PET_ATLAS = {
   columns: 8,

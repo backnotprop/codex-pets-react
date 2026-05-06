@@ -1,14 +1,14 @@
-export { CODEX_PET_ATLAS, CODEX_PET_STATES } from "./constants";
+export { CODEX_PET_ATLAS, CODEX_PET_STATES } from "./constants.js";
 export {
   getPetFrame,
   getPetFrameStyle,
   isCodexPetState,
   normalizePetFrame,
   normalizePetScale
-} from "./frame";
-export { preloadPet } from "./preload";
-export { createCodexPetAnimator } from "./animator";
-export { createCodexPetElement } from "./dom";
+} from "./frame.js";
+export { preloadPet } from "./preload.js";
+export { createCodexPetAnimator } from "./animator.js";
+export { createCodexPetElement } from "./dom.js";
 export type {
   CodexPetAnimationEvent,
   CodexPetAnimator,
@@ -27,4 +27,4 @@ export type {
   GetPetFrameOptions,
   GetPetFrameStyleOptions,
   ReducedMotionPreference
-} from "./types";
+} from "./types.js";

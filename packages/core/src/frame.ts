@@ -1,11 +1,11 @@
-import { CODEX_PET_ATLAS, CODEX_PET_STATES } from "./constants";
+import { CODEX_PET_ATLAS, CODEX_PET_STATES } from "./constants.js";
 import type {
   CodexPetFrame,
   CodexPetFrameStyle,
   CodexPetState,
   GetPetFrameOptions,
   GetPetFrameStyleOptions
-} from "./types";
+} from "./types.js";
 
 const MIN_SCALE = 0.1;
 const MAX_SCALE = 16;
