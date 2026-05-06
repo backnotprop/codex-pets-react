@@ -1,0 +1,41 @@
+{
+  "name": "codex-pets-react",
+  "version": "0.1.0",
+  "description": "React wrapper for Codex pet spritesheets.",
+  "license": "MIT",
+  "author": "backnotprop",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/backnotprop/codex-pets-react.git",
+    "directory": "packages/react"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --config vitest.config.ts"
+  },
+  "dependencies": {
+    "codex-pets-core": "^0.1.0"
+  },
+  "peerDependencies": {
+    "react": "^18.3.0 || ^19.0.0"
+  }
+}

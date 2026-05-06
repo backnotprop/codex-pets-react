@@ -1,10 +1,10 @@
 {
-  "name": "codex-pets-react",
-  "version": "0.2.0",
-  "description": "Declarative React wrapper for Codex pet spritesheets.",
+  "name": "codex-pets-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Framework-neutral and React renderers for Codex pet spritesheets.",
   "license": "MIT",
   "author": "backnotprop",
-  "homepage": "https://backnotprop.github.io/codex-pets-react/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/backnotprop/codex-pets-react.git"
@@ -13,33 +13,18 @@
     "url": "https://github.com/backnotprop/codex-pets-react/issues"
   },
   "type": "module",
-  "main": "./dist/lib/index.cjs",
-  "module": "./dist/lib/index.js",
-  "types": "./dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/lib/index.js",
-      "require": "./dist/lib/index.cjs"
-    }
-  },
-  "files": [
-    "dist/lib",
-    "dist/types",
-    "README.md"
+  "workspaces": [
+    "packages/*",
+    "apps/*"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
-    "dev": "vite --config examples/plannotator-pet/vite.config.ts --host 127.0.0.1",
-    "typecheck": "tsc --noEmit",
-    "build:types": "tsc -p tsconfig.build.json",
-    "build:lib": "vite build --config vite.lib.config.ts",
-    "build:example": "vite build --config examples/plannotator-pet/vite.config.ts",
-    "build": "npm run typecheck && npm run build:types && npm run build:lib && npm run build:example",
-    "preview": "vite preview --config examples/plannotator-pet/vite.config.ts --host 127.0.0.1",
-    "prepublishOnly": "npm run build"
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "dev": "npm run dev -w apps/demo",
+    "copy:pets": "node scripts/copy-local-pets.mjs",
+    "pack:dry": "npm pack --dry-run -w packages/core && npm pack --dry-run -w packages/react",
+    "prepublishOnly": "npm run build && npm run test && npm run pack:dry"
   },
   "keywords": [
     "codex",
@@ -48,20 +33,16 @@
     "react",
     "animation"
   ],
-  "peerDependencies": {
-    "react": "^18.3.0 || ^19.0.0",
-    "react-dom": "^18.3.0 || ^19.0.0"
-  },
   "devDependencies": {
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4.3.4",
-    "lucide-react": "^0.468.0",
+    "happy-dom": "^20.0.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "typescript": "^5.7.2",
-    "vite": "^6.0.5"
-  },
-  "sideEffects": false
+    "vite": "^6.0.5",
+    "vitest": "^4.0.16"
+  }
 }
