@@ -50,6 +50,8 @@ npm run dev
 
 `copy:pets` copies local pets from `~/.codex/pets` into
 `apps/demo/public/pets` and writes `pets-index.json` for the demo.
+Production demo builds copy the committed fixture pet from `fixtures/pets`, so
+GitHub Pages can render a pet without access to a developer machine.
 
 ## Build And Test
 
