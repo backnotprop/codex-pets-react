@@ -4,5 +4,6 @@ dist
 coverage
 *.tsbuildinfo
 .env
+apps/demo/public/pets
 .DS_Store
 *.local
