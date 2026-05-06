@@ -1,36 +1,16 @@
-# Codex Pets React
+# Codex Pets Web
 
-Declarative React components and state helpers for Codex pet spritesheets.
+Production-ready web renderers for Codex pet spritesheets.
 
-Brought to you by [Plannotator](https://github.com/backnotprop/plannotator), the review surface for agent work: use it before an agent starts to sharpen plans, and after an agent finishes to review code.
+This repository is an npm workspace with:
 
-The package includes:
+- [`codex-pets-core`](./packages/core): dependency-free TypeScript engine.
+- [`codex-pets-react`](./packages/react): React wrapper around the core engine.
+- [`apps/demo`](./apps/demo): Vite playground for local pets from `~/.codex/pets`.
 
-- `SpriteAnimator` for atlas row/frame playback.
-- `PetWidget` for fixed-position rendering, dragging, pinning, and animation completion events.
-- `petReducer` and `usePetController` for state-driven app integration.
-- A shared `codexPetAtlas` and `CodexPetAnimationName` contract for Codex pet spritesheets.
+## Sprite Contract
 
-## Install
-
-```bash
-npm install codex-pets-react
-```
-
-## Example App
-
-The plannotator pet playground lives in `examples/plannotator-pet`.
-
-```bash
-npm install
-npm run dev
-```
-
-The example loads Tater from `/pets/tater/spritesheet.webp`, exposes animation actions, screen pinning, dragging, a simulation toggle, automatic waiting, frame pausing, nudging, scaling, and a live state/event view.
-
-## Importing Codex Pets
-
-Codex pets live on your machine under:
+Codex pets are regular folders:
 
 ```text
 ~/.codex/pets/<pet-id>/
@@ -38,119 +18,69 @@ Codex pets live on your machine under:
 └── spritesheet.webp
 ```
 
-For example, the included playground uses:
+The spritesheet uses the fixed Codex atlas:
 
-```text
-/Users/ramos/.codex/pets/tater/
-├── pet.json
-└── spritesheet.webp
-```
+- `1536x1872`
+- `8` columns x `9` rows
+- `192x208` cells
+- transparent background
+- unused cells fully transparent
 
-To use one in a web app, copy the pet folder into your app's public assets and pass the public spritesheet URL to `PetWidget`:
+States are mapped by row:
 
-```bash
-mkdir -p public/pets/tater
-cp ~/.codex/pets/tater/pet.json public/pets/tater/pet.json
-cp ~/.codex/pets/tater/spritesheet.webp public/pets/tater/spritesheet.webp
-```
+| State | Row | Frames |
+| --- | ---: | ---: |
+| `idle` | 0 | 6 |
+| `running-right` | 1 | 8 |
+| `running-left` | 2 | 8 |
+| `waving` | 3 | 4 |
+| `jumping` | 4 | 5 |
+| `failed` | 5 | 8 |
+| `waiting` | 6 | 6 |
+| `running` | 7 | 6 |
+| `review` | 8 | 6 |
 
-Codex pets share the same atlas contract, so render the copied spritesheet with `codexPetAtlas`:
-
-```tsx
-<PetWidget
-  src="/pets/tater/spritesheet.webp"
-  atlas={codexPetAtlas}
-  animation={pet.animation}
-  position={pet.position}
-  pin={pet.pin}
-  draggable
-  onAction={petDispatch}
-/>
-```
-
-The `pet.json` file identifies the pet and its spritesheet path. The React wrapper needs the browser-accessible `src` plus `codexPetAtlas`, which describes the shared grid, frame rows, and frame durations.
-
-## Usage
-
-```tsx
-import {
-  PetWidget,
-  codexPetAtlas,
-  usePetController,
-  type CodexPetAnimationName
-} from "codex-pets-react";
-
-export function PetLayer() {
-  const { pet, petDispatch } = usePetController<CodexPetAnimationName>({
-    initialState: {
-      animation: { name: "idle", mode: "loop" },
-      pin: "bottom-right"
-    },
-    defaultAnimation: "idle",
-    waitingAnimation: "waiting",
-    waitingAfterMs: 6000
-  });
-
-  return (
-    <PetWidget
-      src="/pets/tater/spritesheet.webp"
-      atlas={codexPetAtlas}
-      animation={pet.animation}
-      position={pet.position}
-      pin={pet.pin}
-      draggable
-      onAction={petDispatch}
-    />
-  );
-}
-```
-
-Dispatch actions to drive the pet from app state:
-
-```ts
-petDispatch({
-  type: "animation.play",
-  animation: "waving",
-  mode: "once",
-  then: "idle"
-});
-
-petDispatch({ type: "pin.set", pin: "bottom-right" });
-petDispatch({ type: "position.set", position: { x: 240, y: 420 } });
-petDispatch({ type: "animation.set", animation: "waiting" });
-```
-
-## Drag Gesture Animations
-
-Keep gesture animation opt-in by observing pet actions and dispatching follow-up animation actions:
-
-```tsx
-const observeDragGesture = usePetDragGestureAnimations<CodexPetAnimationName>({
-  enabled: true,
-  animations: {
-    left: "running-left",
-    right: "running-right",
-    up: "jumping",
-    down: "waving"
-  },
-  restAnimation: "idle",
-  minimumDistance: 16,
-  axisBias: 1.12,
-  onGestureAction: petDispatch
-});
-
-const onAction = (action: PetAction<CodexPetAnimationName>) => {
-  petDispatch(action);
-  observeDragGesture(action);
-};
-```
-
-`minimumDistance` filters pointer jitter. `axisBias` requires one axis to clearly dominate before changing animations, so diagonal or shaky drags do not flicker between states.
-
-## Build
+## Development
 
 ```bash
+npm install
+npm run copy:pets
+npm run dev
+```
+
+`copy:pets` copies local pets from `~/.codex/pets` into
+`apps/demo/public/pets` and writes `pets-index.json` for the demo.
+
+## Build And Test
+
+```bash
+npm run typecheck
+npm run test
 npm run build
+npm run pack:dry
 ```
 
-This typechecks the repo, emits library declarations to `dist/types`, builds the library to `dist/lib`, and builds the example to `dist/examples/plannotator-pet`.
+## Publishing
+
+Dry-run package contents first:
+
+```bash
+npm run pack:dry
+```
+
+Publish prereleases:
+
+```bash
+npm publish -w packages/core --access public --tag next
+npm publish -w packages/react --access public --tag next
+```
+
+Publish stable releases:
+
+```bash
+npm publish -w packages/core --access public
+npm publish -w packages/react --access public
+```
+
+`codex-pets-react` already exists on npm at `0.2.0`, so this workspace uses
+`0.3.0` for the React package. `codex-pets-core` starts at `0.1.0`.
