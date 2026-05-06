@@ -29,6 +29,7 @@
   },
   "scripts": {
     "build": "tsc -b ../core tsconfig.json",
+    "prepack": "npm run build",
     "typecheck": "tsc -b ../core tsconfig.json --pretty false",
     "test": "vitest run --config vitest.config.ts"
   },
