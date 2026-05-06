@@ -2,7 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+    "paths": {
+      "codex-pets-core": ["../core/src/index.ts"]
+    }
   },
   "include": ["src", "test", "vitest.config.ts"],
   "references": [{ "path": "../core" }]

@@ -102,6 +102,8 @@ export interface CodexPetAnimator {
   setSpritesheetUrl(spritesheetUrl: string): void;
   setScale(scale: number): void;
   setFps(fps: number): void;
+  setImageRendering(imageRendering: string): void;
+  setReducedMotion(reducedMotion: ReducedMotionPreference): void;
   setPaused(paused: boolean): void;
   pause(): void;
   resume(): void;

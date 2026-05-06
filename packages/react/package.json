@@ -28,8 +28,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "tsc -b ../core tsconfig.json",
+    "typecheck": "tsc -b ../core tsconfig.json --pretty false",
     "test": "vitest run --config vitest.config.ts"
   },
   "dependencies": {

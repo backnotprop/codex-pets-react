@@ -117,6 +117,18 @@ export class CodexPetAnimatorImpl
     this.options = { ...this.options, fps: normalizeFps(fps) };
   }
 
+  setImageRendering(imageRendering: string): void {
+    this.options = { ...this.options, imageRendering };
+    this.render();
+  }
+
+  setReducedMotion(reducedMotion: CodexPetAnimatorOptions["reducedMotion"]): void {
+    this.options = { ...this.options, reducedMotion };
+    this.lastFrameAt = null;
+    this.render();
+    this.updateSchedule();
+  }
+
   setPaused(paused: boolean): void {
     this.paused = paused;
     this.lastFrameAt = null;
