@@ -5,7 +5,7 @@
     "jsx": "react-jsx",
     "rootDir": "src",
     "outDir": "dist",
-    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "tsBuildInfoFile": ".tsbuildinfo",
     "paths": {
       "codex-pets-core": ["../core/src/index.ts"]
     }

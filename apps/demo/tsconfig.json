@@ -5,7 +5,7 @@
     "jsx": "react-jsx",
     "noEmit": true,
     "types": ["vite/client"],
-    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "tsBuildInfoFile": ".tsbuildinfo",
     "paths": {
       "codex-pets-core": ["../../packages/core/src/index.ts"],
       "codex-pets-react": ["../../packages/react/src/index.ts"]
